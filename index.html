@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index of /</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><path fill=%22%2358a6ff%22 d=%22M1.75 1A1.75 0 0 2.75v9.5C0 13.216.784 14 1.75 14h12.5A1.75 0 0 0 16 12.25v-6.5A1.75 1.75 0 0 0 14.25 4H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 2.26 5.55 2 5 2H1.75Z%22/></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root {
+  --bg: #0d1117;
+  --panel: #010409;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --border: #21262d;
+  --accent: #58a6ff;
+  --row-hover: #161b22;
+  --success: #3fb950;
+}
+body.light {
+  --bg: #ffffff;
+  --panel: #f6f8fa;
+  --text: #1f2328;
+  --text-muted: #656d76;
+  --border: #d0d7de;
+  --accent: #0969da;
+  --row-hover: #f6f8fa;
+}
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; }
+body {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.app { display:flex; flex-direction:column; min-height:100vh; }
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; background:var(--panel);
+  border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10;
+  gap:12px;
+}
+.title { display:flex; align-items:center; gap:10px; font-weight:600; min-width:0; }
+.title .path { color: var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.title svg { color: var(--accent); flex-shrink:0; }
+.actions { display:flex; align-items:center; gap:8px; }
+.btn {
+  background:transparent; border:1px solid var(--border); color:var(--text-muted);
+  padding:6px 10px; border-radius:6px; cursor:pointer; display:flex; align-items:center; gap:6px;
+  font-family:inherit; font-size:12px; transition:all .15s;
+}
+.btn:hover { background:var(--row-hover); color:var(--text); border-color:var(--text-muted); }
+.btn svg { width:14px; height:14px; }
+
+.breadcrumb {
+  padding:8px 16px; border-bottom:1px solid var(--border); font-size:12px;
+  color:var(--text-muted); display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+  background: var(--bg);
+}
+.breadcrumb a { color:var(--text-muted); text-decoration:none; padding:2px 4px; border-radius:4px; }
+.breadcrumb a:hover { color:var(--accent); background:var(--row-hover); }
+.breadcrumb .sep { opacity:.5; }
+
+main { flex:1; overflow:auto; }
+
+table { width:100%; border-collapse:collapse; table-layout:fixed; }
+thead th {
+  text-align:left; padding:10px 16px; font-weight:500; color:var(--text-muted);
+  border-bottom:1px solid var(--border); font-size:11px; text-transform:uppercase;
+  letter-spacing:.05em; background:var(--bg); position:sticky; top:0; z-index:5;
+  user-select:none;
+}
+th:nth-child(1) { width:45%; }
+th:nth-child(2) { width:25%; }
+th:nth-child(3) { width:15%; }
+th:nth-child(4) { width:15%; }
+
+tbody td {
+  padding:0; border-bottom:1px solid var(--border); height:40px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+tbody tr { transition: background .1s; }
+tbody tr:hover { background: var(--row-hover); }
+tbody tr:focus-within { background: var(--row-hover); }
+td > a, td > div.cell {
+  display:flex; align-items:center; height:40px; padding:0 16px; color:inherit; text-decoration:none;
+  width:100%; overflow:hidden;
+}
+.name-cell { display:flex; align-items:center; gap:10px; min-width:0; flex:1; }
+.name-cell svg { flex-shrink:0; width:16px; height:16px; color:var(--text-muted); }
+tr[data-type="dir"] .name-cell svg { color: var(--accent); }
+tr[data-type="dir"] .name-cell .name { color: var(--accent); font-weight:500; }
+tr.is-parent .name-cell .name { color: var(--text-muted); }
+.name-cell .name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.col-muted { color: var(--text-muted); font-size:13px; }
+
+.status {
+  padding:40px 20px; text-align:center; color:var(--text-muted); line-height:1.8;
+}
+.status b { color: var(--text); }
+.status code { background:var(--panel); padding:2px 6px; border-radius:4px; border:1px solid var(--border); }
+
+footer {
+  padding:10px 16px; border-top:1px solid var(--border); display:flex;
+  justify-content:space-between; align-items:center; font-size:12px; color:var(--text-muted);
+  background:var(--panel); gap:16px;
+}
+
+@media (max-width: 900px) {
+  th:nth-child(4), td:nth-child(4) { display:none; }
+  th:nth-child(1) { width:55%; }
+  th:nth-child(2) { width:30%; }
+  th:nth-child(3) { width:15%; }
+}
+@media (max-width: 640px) {
+  th:nth-child(2), td:nth-child(2) { display:none; }
+  th:nth-child(1) { width:70%; }
+  th:nth-child(3) { width:30%; }
+  header { padding:8px 12px; }
+  .breadcrumb, thead th, td > a, td > div.cell { padding-left:12px; padding-right:12px; }
+  .btn span { display:none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="title">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v9.5C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0 0 16 12.25v-6.5A1.75 0 0 0 14.25 4H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 2.26 5.55 2 5 2H1.75Z"/></svg>
+      <span class="path" id="current-path">/</span>
+    </div>
+    <div class="actions">
+      <button class="btn" id="theme-toggle" title="Ganti tema">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/></svg>
+        <span>Tema</span>
+      </button>
+      <a class="btn" id="github-link" target="_blank" rel="noopener" title="Buka di GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.13 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <nav class="breadcrumb" id="breadcrumb">
+    <a href="#/">root</a>
+  </nav>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Terakhir diubah</th>
+          <th>Ukuran</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody id="file-list"></tbody>
+    </table>
+    <div id="status" class="status">Memuat direktori...</div>
+  </main>
+
+  <footer>
+    <span id="footer-text">Index of /</span>
+    <span>github-pages directory index</span>
+  </footer>
+</div>
+
+<script>
+// EDIT INI: ganti MANUAL_PAGES jika API tidak bekerja
+const MANUAL_PAGES = [
+  { name: 'about.html', type: 'file', size: 2451, modified: '2024-06-12T10:00:00Z', path: 'about.html' },
+  { name: 'projects', type: 'dir', size: 0, modified: '2024-05-20T08:30:00Z', path: 'projects' },
+  { name: 'blog', type: 'dir', size: 0, modified: '2024-07-01T14:15:00Z', path: 'blog' },
+  { name: 'contact.html', type: 'file', size: 1892, modified: '2024-04-10T12:00:00Z', path: 'contact.html' },
+  { name: 'README.md', type: 'file', size: 3421, modified: '2024-08-01T09:00:00Z', path: 'README.md' },
+  { name: 'index.html', type: 'file', size: 5243, modified: '2024-08-15T07:20:00Z', path: 'projects/index.html' },
+  { name: 'demo.js', type: 'file', size: 1876, modified: '2024-07-10T09:12:00Z', path: 'projects/demo.js' },
+  { name: 'hello-world.md', type: 'file', size: 876, modified: '2024-07-22T11:10:00Z', path: 'blog/hello-world.md' },
+];
+
+let owner = '', repo = '', basePath = '/', currentPath = '';
+
+const fileList = document.getElementById('file-list');
+const statusEl = document.getElementById('status');
+const pathEl = document.getElementById('current-path');
+const breadcrumbEl = document.getElementById('breadcrumb');
+const footerEl = document.getElementById('footer-text');
+const githubLink = document.getElementById('github-link');
+
+function detectRepo() {
+  const host = window.location.hostname;
+  const isGithub = host.endsWith('github.io');
+  
+  if (isGithub) {
+    owner = host.split('.')[0];
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts.length > 0 && host === `${owner}.github.io`) {
+      repo = parts[0];
+      basePath = `/${repo}/`;
+    } else {
+      repo = `${owner}.github.io`;
+      basePath = '/';
+    }
+  } else {
+    // local demo
+    owner = 'octocat';
+    repo = 'Hello-World';
+    basePath = '/';
+  }
+  
+  const repoDisplay = repo === `${owner}.github.io` ? owner + '.github.io' : `${owner}.github.io/${repo}`;
+  footerEl.textContent = `Index of ${repoDisplay}`;
+  document.title = `Index of /${repoDisplay}`;
+  githubLink.href = `https://github.com/${owner}/${repo}`;
+}
+
+function formatSize(bytes) {
+  if (!bytes || bytes === 0) return '—';
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024*1024)).toFixed(1)} MB`;
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString('id-ID', { year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+  } catch { return '—' }
+}
+
+function getIcon(item) {
+  if (item.isParent) return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06z"/></svg>`;
+  if (item.type === 'dir') return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1A1.75 0 0 2.75v9.5C0 13.216.784 14 1.75 14h12.5A1.75 0 0 0 16 12.25v-6.5A1.75 1.75 0 0 0 14.25 4H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 2.26 5.55 2 5 2H1.75Z"/></svg>`;
+  const ext = item.name.split('.').pop().toLowerCase();
+  if (['html','htm'].includes(ext)) return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>`;
+  if (['md','markdown'].includes(ext)) return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75V1.75Z"/></svg>`;
+  if (['js','ts','json'].includes(ext)) return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 13.25 15h-9.5A1.75 1.75 0 0 1 2 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.5 0v2.75c0 .138.112.25.25.25h2.75Z"/></svg>`;
+  return `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 1.5a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6H9.75A1.75 1.75 0 0 1 8 4.25V1.5H3.75Z"/></svg>`;
+}
+
+function getTypeLabel(item) {
+  if (item.type === 'dir') return 'Folder';
+  const ext = item.name.split('.').pop().toUpperCase();
+  return ext.length > 5 ? 'File' : ext;
+}
+
+function updateBreadcrumb() {
+  const parts = currentPath.split('/').filter(Boolean);
+  let html = `<a href="#/">root</a>`;
+  let accum = '';
+  parts.forEach(p => {
+    accum += (accum ? '/' : '') + p;
+    html += ` <span class="sep">/</span> <a href="#/${accum}">${p}</a>`;
+  });
+  breadcrumbEl.innerHTML = html;
+  pathEl.textContent = '/' + currentPath;
+  githubLink.href = `https://github.com/${owner}/${repo}/tree/HEAD/${currentPath}`;
+}
+
+async function loadPath(path) {
+  currentPath = path;
+  updateBreadcrumb();
+  fileList.innerHTML = '';
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Memuat...';
+  
+  try {
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const res = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github.v3+json' }});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const items = Array.isArray(data) ? data : [data];
+    
+    // Fetch last modified (best effort, parallel)
+    const enriched = await Promise.all(items.map(async (it) => {
+      let modified = null;
+      try {
+        const commitRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits?path=${encodeURIComponent(it.path)}&per_page=1`);
+        if (commitRes.ok) {
+          const commits = await commitRes.json();
+          modified = commits[0]?.commit?.committer?.date || null;
+        }
+      } catch {}
+      return {
+        name: it.name,
+        type: it.type,
+        size: it.size,
+        path: it.path,
+        modified,
+      };
+    }));
+    
+    statusEl.style.display = 'none';
+    renderItems(enriched);
+  } catch (err) {
+    console.warn('API gagal, fallback manual:', err);
+    statusEl.innerHTML = `Gagal memuat dari GitHub API (rate limit?). Menampilkan <b>MANUAL_PAGES</b>.<br><small>EDIT INI: ganti MANUAL_PAGES jika API tidak bekerja</small>`;
+    renderManual(path);
+  }
+}
+
+function renderItems(items) {
+  fileList.innerHTML = '';
+  
+  // sort: folders first
+  items.sort((a,b) => {
+    if (a.type !== b.type) return a.type === 'dir' ? -1 : 1;
+    return a.name.localeCompare(b.name);
+  });
+  
+  if (currentPath) {
+    const parentPath = currentPath.split('/').slice(0,-1).join('/');
+    addRow({ name: '..', type: 'dir', path: parentPath, isParent: true, size: 0, modified: null });
+  }
+  
+  items.forEach(addRow);
+  
+  if (items.length === 0 && !currentPath) {
+    statusEl.style.display = 'block';
+    statusEl.textContent = 'Tidak ada file.';
+  }
+}
+
+function renderManual(path) {
+  const prefix = path ? path.replace(/\/$/, '') + '/' : '';
+  const filtered = MANUAL_PAGES.filter(p => {
+    if (!p.path.startsWith(prefix)) return false;
+    const rest = p.path.slice(prefix.length);
+    return rest && !rest.includes('/');
+  }).map(p => ({
+    name: p.name,
+    type: p.type,
+    size: p.size,
+    path: p.path,
+    modified: p.modified
+  }));
+  renderItems(filtered);
+}
+
+function addRow(item) {
+  const tr = document.createElement('tr');
+  tr.dataset.type = item.type;
+  if (item.isParent) tr.classList.add('is-parent');
+  
+  const nameCell = document.createElement('td');
+  const link = document.createElement('a');
+  link.href = item.type === 'dir' ? `#/${item.path}` : `${basePath}${item.path}`;
+  if (item.type !== 'dir' && !item.isParent) {
+    link.target = '_blank';
+    link.rel = 'noopener';
+  }
+  link.innerHTML = `<span class="name-cell">${getIcon(item)}<span class="name">${item.name}${item.type==='dir'&&!item.isParent?'/':''}</span></span>`;
+  link.onclick = (e) => {
+    if (item.type === 'dir') {
+      e.preventDefault();
+      navigateTo(item.path);
+    }
+  };
+  nameCell.appendChild(link);
+  
+  const dateCell = document.createElement('td');
+  dateCell.innerHTML = `<div class="cell col-muted">${formatDate(item.modified)}</div>`;
+  
+  const sizeCell = document.createElement('td');
+  sizeCell.innerHTML = `<div class="cell col-muted">${item.type==='dir' ? '—' : formatSize(item.size)}</div>`;
+  
+  const typeCell = document.createElement('td');
+  typeCell.innerHTML = `<div class="cell col-muted">${item.isParent ? 'Parent' : getTypeLabel(item)}</div>`;
+  
+  tr.append(nameCell, dateCell, sizeCell, typeCell);
+  fileList.appendChild(tr);
+}
+
+function navigateTo(path) {
+  const clean = path.replace(/^\/+|\/+$/g, '');
+  location.hash = '/' + clean;
+}
+
+function handleHash() {
+  const hashPath = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  loadPath(hashPath);
+}
+
+// Theme
+const themeBtn = document.getElementById('theme-toggle');
+function updateThemeIcon() {
+  const isLight = document.body.classList.contains('light');
+  themeBtn.innerHTML = isLight
+    ? `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 8 0zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 13zM2.343 2.343a.75.75 0 0 1 1.06 0l1.06 1.061a.75.75 0 0 1-1.06 1.06L2.343 3.404a.75.75 0 0 1 0-1.06zm9.193 9.193a.75.75 0 0 1 1.06 0l1.061 1.06a.75.75 0 0 1-1.06 1.061l-1.061-1.06a.75.75 0 0 1 0-1.061zM16 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 16 8zM3 8a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 3 8zm10.657-5.657a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 1 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.061 0zm-9.193 9.193a.75.75 0 0 1 0 1.06L3.404 13.657a.75.75 0 0 1-1.06-1.06l1.06-1.061a.75.75 0 0 1 1.06 0z"/></svg><span>Terang</span>`
+    : `<svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.598 1.591a.75.75 0 0 1 .3-.8A7 7 0 1 0 15.5 8a.75.75 0 0 1-1.123.65 5.502 5.502 0 0 1-7.576-7.576.75.75 0 0 1 .8-.3Z"/></svg><span>Gelap</span>`;
+}
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  updateThemeIcon();
+});
+
+// Init
+(function init(){
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') document.body.classList.add('light');
+  updateThemeIcon();
+  detectRepo();
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+})();
+</script>
+</body>
+</html>
