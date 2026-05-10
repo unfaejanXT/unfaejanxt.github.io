@@ -170,16 +170,16 @@ footer {
 </div>
 
 <script>
-// EDIT INI: ganti MANUAL_PAGES jika API tidak bekerja
 const MANUAL_PAGES = [
-  { name: 'about.html', type: 'file', size: 2451, modified: '2024-06-12T10:00:00Z', path: 'about.html' },
-  { name: 'projects', type: 'dir', size: 0, modified: '2024-05-20T08:30:00Z', path: 'projects' },
-  { name: 'blog', type: 'dir', size: 0, modified: '2024-07-01T14:15:00Z', path: 'blog' },
-  { name: 'contact.html', type: 'file', size: 1892, modified: '2024-04-10T12:00:00Z', path: 'contact.html' },
-  { name: 'README.md', type: 'file', size: 3421, modified: '2024-08-01T09:00:00Z', path: 'README.md' },
-  { name: 'index.html', type: 'file', size: 5243, modified: '2024-08-15T07:20:00Z', path: 'projects/index.html' },
-  { name: 'demo.js', type: 'file', size: 1876, modified: '2024-07-10T09:12:00Z', path: 'projects/demo.js' },
-  { name: 'hello-world.md', type: 'file', size: 876, modified: '2024-07-22T11:10:00Z', path: 'blog/hello-world.md' },
+  { name: 'index.html', type: 'file', size: 17950, modified: '2024-05-10T23:42:00Z', path: 'index.html' },
+  { name: 'pages', type: 'dir', size: 0, modified: '2024-05-10T23:42:00Z', path: 'pages' },
+  { name: 'erd-sim.html', type: 'file', size: 51667, modified: '2024-05-10T23:42:00Z', path: 'pages/erd-sim.html' },
+  { name: 'APSI-8', type: 'dir', size: 0, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8' },
+  { name: '1-HTML-DASAR.html', type: 'file', size: 16622, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8/1-HTML-DASAR.html' },
+  { name: '2-CSS-DASAR.html', type: 'file', size: 16714, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8/2-CSS-DASAR.html' },
+  { name: '3-HTML-CSS-LOGIN.html', type: 'file', size: 34065, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8/3-HTML-CSS-LOGIN.html' },
+  { name: '4-BEDAH-LOGIN.html', type: 'file', size: 21515, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8/4-BEDAH-LOGIN.html' },
+  { name: '5-BEDAH-DASHBOARD.html', type: 'file', size: 251, modified: '2024-05-10T23:42:00Z', path: 'pages/APSI-8/5-BEDAH-DASHBOARD.html' },
 ];
 
 let owner = '', repo = '', basePath = '/', currentPath = '';
@@ -192,30 +192,9 @@ const footerEl = document.getElementById('footer-text');
 const githubLink = document.getElementById('github-link');
 
 function detectRepo() {
-  const host = window.location.hostname;
-  const isGithub = host.endsWith('github.io');
-  
-  if (isGithub) {
-    owner = host.split('.')[0];
-    const parts = window.location.pathname.split('/').filter(Boolean);
-    if (parts.length > 0 && host === `${owner}.github.io`) {
-      repo = parts[0];
-      basePath = `/${repo}/`;
-    } else {
-      repo = `${owner}.github.io`;
-      basePath = '/';
-    }
-  } else {
-    // local demo
-    owner = 'octocat';
-    repo = 'Hello-World';
-    basePath = '/';
-  }
-  
-  const repoDisplay = repo === `${owner}.github.io` ? owner + '.github.io' : `${owner}.github.io/${repo}`;
-  footerEl.textContent = `Index of ${repoDisplay}`;
-  document.title = `Index of /${repoDisplay}`;
-  githubLink.href = `https://github.com/${owner}/${repo}`;
+  footerEl.textContent = `Static File Manager`;
+  document.title = `Index of /`;
+  githubLink.style.display = 'none';
 }
 
 function formatSize(bytes) {
@@ -259,49 +238,14 @@ function updateBreadcrumb() {
   });
   breadcrumbEl.innerHTML = html;
   pathEl.textContent = '/' + currentPath;
-  githubLink.href = `https://github.com/${owner}/${repo}/tree/HEAD/${currentPath}`;
 }
 
 async function loadPath(path) {
   currentPath = path;
   updateBreadcrumb();
   fileList.innerHTML = '';
-  statusEl.style.display = 'block';
-  statusEl.textContent = 'Memuat...';
-  
-  try {
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-    const res = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github.v3+json' }});
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    const items = Array.isArray(data) ? data : [data];
-    
-    // Fetch last modified (best effort, parallel)
-    const enriched = await Promise.all(items.map(async (it) => {
-      let modified = null;
-      try {
-        const commitRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits?path=${encodeURIComponent(it.path)}&per_page=1`);
-        if (commitRes.ok) {
-          const commits = await commitRes.json();
-          modified = commits[0]?.commit?.committer?.date || null;
-        }
-      } catch {}
-      return {
-        name: it.name,
-        type: it.type,
-        size: it.size,
-        path: it.path,
-        modified,
-      };
-    }));
-    
-    statusEl.style.display = 'none';
-    renderItems(enriched);
-  } catch (err) {
-    console.warn('API gagal, fallback manual:', err);
-    statusEl.innerHTML = `Gagal memuat dari GitHub API (rate limit?). Menampilkan <b>MANUAL_PAGES</b>.<br><small>EDIT INI: ganti MANUAL_PAGES jika API tidak bekerja</small>`;
-    renderManual(path);
-  }
+  statusEl.style.display = 'none';
+  renderManual(path);
 }
 
 function renderItems(items) {
@@ -349,7 +293,7 @@ function addRow(item) {
   
   const nameCell = document.createElement('td');
   const link = document.createElement('a');
-  link.href = item.type === 'dir' ? `#/${item.path}` : `${basePath}${item.path}`;
+  link.href = item.type === 'dir' ? `#/${item.path}` : item.path;
   if (item.type !== 'dir' && !item.isParent) {
     link.target = '_blank';
     link.rel = 'noopener';
