@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Interaktif: HTML & CSS Dasar - Login & Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { position: relative; background-color: #f8fafc; }
+        .sidebar { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: .5rem; font-size: .85rem; overflow-x: auto; position: relative; }
+        .copy-btn { position: absolute; top: .5rem; right: .5rem; padding: .2rem .5rem; font-size: .75rem; color: #94a3b8; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: .25rem; cursor: pointer; transition: all 0.2s; }
+        .copy-btn:hover { color: white; background: rgba(255,255,255,0.2); }
+        code.inline { background: #e2e8f0; color: #dc2626; padding: .15rem .4rem; border-radius: .25rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .nav-pills .nav-link { color: #334155; text-align: left; }
+        .nav-pills .nav-link.active { background: #2563eb; color: white; }
+        h2, h3 { scroll-margin-top: 90px; }
+        .tag-card { border-left: 4px solid #2563eb; }
+        .step-number { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: white; border-radius: 50%; font-weight: bold; margin-right: .5rem; }
+        .preview-frame { border: 1px solid #dee2e6; border-radius: .5rem; width: 100%; height: 500px; background: #f8f9fa; }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#sidebar-nav" data-bs-offset="100" tabindex="0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">HTML & CSS Dasar</a>
+            <span class="navbar-text text-white-50 d-none d-md-inline">Materi Interaktif: Login & Register</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid my-4">
+        <div class="row">
+            <aside class="col-lg-3 d-none d-lg-block">
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="nav flex-column nav-pills gap-1">
+                        <a class="nav-link" href="#pendahuluan">1. Pendahuluan</a>
+                        <a class="nav-link" href="#html-dasar">2. HTML Dasar</a>
+                        <a class="nav-link" href="#css-dasar">3. CSS Dasar</a>
+                        <a class="nav-link" href="#praktik-login">4. Praktik: Login</a>
+                        <a class="nav-link" href="#praktik-register">5. Praktik: Register</a>
+                        <a class="nav-link" href="#best-practice">6. Best Practice</a>
+                        <a class="nav-link" href="#penutup">7. Penutup</a>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="col-lg-9">
+                <div class="p-4 bg-white rounded-3 shadow-sm mb-4">
+                    <h1 class="h3 fw-bold">Belajar HTML & CSS dari Nol lewat Form Login</h1>
+                    <p class="mb-0 text-secondary">Panduan lengkap untuk mahasiswa. Tanpa playground, tanpa kuis — hanya materi terstruktur dan implementasi langkah demi langkah.</p>
+                    <p class="text-muted mb-0 small mt-2">Besok kita akan bedah dua file: login.html dan register.html.</p>
+                </div>
+
+                <section id="pendahuluan" class="mb-5">
+                    <h2 class="fw-bold mb-3">1. Pendahuluan</h2>
+                    <div class="card tag-card mb-3">
+                        <div class="card-body">
+                            <h5>Tujuan Pembelajaran</h5>
+                            <ul>
+                                <li>Memahami struktur dokumen HTML5 yang benar</li>
+                                <li>Menguasai CSS dasar: reset, box model, flexbox, dan styling form</li>
+                                <li>Mampu membangun halaman login dan register dari nol dengan kode bersih</li>
+                                <li>Belajar pola penulisan CSS yang rapi dan mudah dirawat</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Kenapa mulai dari form login? Karena form menggabungkan hampir semua konsep dasar: struktur HTML, layout CSS, tipografi, warna, dan interaksi hover. Setelah ini, kalian bisa membuat komponen apapun.</p>
+                </section>
+
+                <section id="html-dasar" class="mb-5">
+                    <h2 class="fw-bold mb-3">2. HTML Dasar</h2>
+                    
+                    <h3 class="h5 mt-4">2.1 Kerangka Wajib HTML5</h3>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Judul Halaman&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- konten di sini --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <p><strong>Penjelasan:</strong> DOCTYPE memberi tahu browser ini HTML5. Meta viewport penting agar responsif di HP. Semua konten visual harus di dalam body.</p>
+
+                    <h3 class="h5 mt-4">2.2 Tag Penting untuk Form</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr><th>Tag</th><th>Fungsi</th><th>Catatan</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code class="inline">&lt;form&gt;</code></td><td>Wadah input</td><td>action="" method="POST" untuk kirim data</td></tr>
+                                <tr><td><code class="inline">&lt;label for="id"&gt;</code></td><td>Label aksesibel</td><td>for harus sama dengan id input</td></tr>
+                                <tr><td><code class="inline">&lt;input type="text/password"&gt;</code></td><td>Kolom isian</td><td>Selalu pakai placeholder dan required</td></tr>
+                                <tr><td><code class="inline">&lt;button type="submit"&gt;</code></td><td>Tombol aksi</td><td>Bedakan dengan type="button"</td></tr>
+                                <tr><td><code class="inline">&lt;div class="form-group"&gt;</code></td><td>Pembungkus</td><td>Bukan tag bawaan, tapi pola untuk grouping</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="h5 mt-4">2.3 Semantik dan Aksesibilitas</h3>
+                    <p>Gunakan label, bukan hanya placeholder. Placeholder hilang saat mengetik. Label tetap terbaca screen reader. Ini membedakan kode amatir dan profesional.</p>
+                </section>
+
+                <section id="css-dasar" class="mb-5">
+                    <h2 class="fw-bold mb-3">3. CSS Dasar</h2>
+                    
+                    <h3 class="h5 mt-4">3.1 Tiga Cara Menulis CSS</h3>
+                    <p>Untuk materi ini kita pakai <strong>internal CSS</strong> di dalam &lt;style&gt; agar 1 file. Di proyek nyata, pisahkan ke file .css.</p>
+
+                    <h3 class="h5 mt-4">3.2 Reset Dasar</h3>
+                    <pre><code>* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}</code></pre>
+                    <p>box-sizing: border-box membuat width termasuk padding dan border. Tanpa ini, layout form akan meluber.</p>
+
+                    <h3 class="h5 mt-4">3.3 Layout dengan Flexbox</h3>
+                    <pre><code>body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}</code></pre>
+                    <p>Ini trik klasik untuk membuat kartu login di tengah layar secara vertikal dan horizontal. 100vh = 100% tinggi viewport.</p>
+
+                    <h3 class="h5 mt-4">3.4 Box Model</h3>
+                    <p>Setiap elemen punya: content → padding → border → margin. Di login-box kita pakai:</p>
+                    <ul>
+                        <li><code class="inline">max-width: 320px</code> agar tidak terlalu lebar di desktop</li>
+                        <li><code class="inline">padding: 30px</code> ruang napas di dalam kartu</li>
+                        <li><code class="inline">border: 1px solid #ccc</code> dan <code class="inline">border-radius: 8px</code> untuk kesan modern</li>
+                    </ul>
+
+                    <h3 class="h5 mt-4">3.5 Pola Penulisan Rapi</h3>
+                    <p>Lihat di file contoh, CSS dikelompokkan dengan komentar: /* 1. RESET */, /* 2. LAYOUT */, dst. Dan properti diurutkan: Layout dulu, baru Text. Ini kebiasaan bagus untuk tim.</p>
+                </section>
+
+                <section id="praktik-login" class="mb-5">
+                    <h2 class="fw-bold mb-3">4. Praktik Langkah demi Langkah: Login</h2>
+                    <p>Kita akan membangun persis seperti file login.html.</p>
+
+                    <div class="accordion" id="accordionLogin">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1"><span class="step-number">1</span> Buat Kerangka HTML</button></h2>
+                            <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#accordionLogin">
+                                <div class="accordion-body">
+                                    <pre><code>&lt;div class="login-box"&gt;
+  &lt;h2&gt;Login Gudang&lt;/h2&gt;
+  &lt;form action="" method="POST"&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="username"&gt;Username&lt;/label&gt;
+      &lt;input type="text" id="username" name="username" placeholder="Masukkan username" required&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="password"&gt;Password&lt;/label&gt;
+      &lt;input type="password" id="password" name="password" placeholder="Masukkan password" required&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2"><span class="step-number">2</span> Terapkan Reset dan Body</button></h2>
+                            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordionLogin">
+                                <div class="accordion-body">
+                                    <pre><code>* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  display: flex; justify-content: center; align-items: center;
+  height: 100vh; background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3"><span class="step-number">3</span> Styling Kartu</button></h2>
+                            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordionLogin">
+                                <div class="accordion-body">
+                                    <pre><code>.login-box {
+  width: 100%; max-width: 320px; padding: 30px;
+  background-color: white; border: 1px solid #ccc; border-radius: 8px;
+}
+h2 { margin-bottom: 20px; text-align: center; color: #333; }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4"><span class="step-number">4</span> Form Group dan Input</button></h2>
+                            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#accordionLogin">
+                                <div class="accordion-body">
+                                    <pre><code>.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #555; }
+.form-group input {
+  width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5"><span class="step-number">5</span> Tombol dan Hover</button></h2>
+                            <div id="step5" class="accordion-collapse collapse" data-bs-parent="#accordionLogin">
+                                <div class="accordion-body">
+                                    <pre><code>button {
+  width: 100%; padding: 10px; margin-top: 10px;
+  background-color: #4a90e2; border: none; border-radius: 5px;
+  cursor: pointer; color: white; font-size: 16px;
+}
+button:hover { background-color: #357abd; }</code></pre>
+                                    <p>Hover memberi feedback visual. Warna lebih gelap 10-15%.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#login-code">Kode Lengkap</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#login-preview">Hasil</button></li>
+                        </ul>
+                        <div class="tab-content border border-top-0 p-3 rounded-bottom">
+                            <div class="tab-pane fade show active" id="login-code">
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;LOGIN&lt;/title&gt;
+
+    &lt;style&gt;
+        /* 1. RESET DASAR */
+        * {
+            /* Layout */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. LAYOUT UTAMA */
+        body {
+            /* Layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+
+            /* Text */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 3. KOTAK LOGIN / KARTU */
+        .login-box {
+            /* Layout */
+            width: 100%;
+            max-width: 320px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        h2 {
+            /* Layout */
+            margin-bottom: 20px;
+
+            /* Text */
+            text-align: center;
+            color: #333;
+        }
+
+        /* 4. STRUKTUR FORM */
+        .form-group {
+            /* Layout */
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            /* Layout */
+            display: block;
+            margin-bottom: 5px;
+
+            /* Text */
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Text */
+            font-size: 14px;
+        }
+
+        /* 5. TOMBOL &amp; INTERAKSI */
+        button {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            /* Text */
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            /* Layout (Visual) */
+            background-color: #357abd;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class=&quot;login-box&quot;&gt;
+        &lt;h2&gt;Login Gudang&lt;/h2&gt;
+
+        &lt;!-- Atribut standard form --&gt;
+        &lt;form action=&quot;&quot; method=&quot;POST&quot;&gt;
+
+            &lt;!-- Penggunaan label sangat penting untuk aksesibilitas dan UI --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+                &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Masukkan username&quot; required&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+                &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Masukkan password&quot; required&gt;
+            &lt;/div&gt;
+
+            &lt;button type=&quot;submit&quot;&gt;Login&lt;/button&gt;
+
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+                            </div>
+                            <div class="tab-pane fade" id="login-preview">
+                                <iframe class="preview-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;id&quot;>
+
+<head>
+    <meta charset=&quot;UTF-8&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+    <title>LOGIN</title>
+
+    <style>
+        /* 1. RESET DASAR */
+        * {
+            /* Layout */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. LAYOUT UTAMA */
+        body {
+            /* Layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+
+            /* Text */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 3. KOTAK LOGIN / KARTU */
+        .login-box {
+            /* Layout */
+            width: 100%;
+            max-width: 320px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        h2 {
+            /* Layout */
+            margin-bottom: 20px;
+
+            /* Text */
+            text-align: center;
+            color: #333;
+        }
+
+        /* 4. STRUKTUR FORM */
+        .form-group {
+            /* Layout */
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            /* Layout */
+            display: block;
+            margin-bottom: 5px;
+
+            /* Text */
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Text */
+            font-size: 14px;
+        }
+
+        /* 5. TOMBOL &amp; INTERAKSI */
+        button {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            /* Text */
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            /* Layout (Visual) */
+            background-color: #357abd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=&quot;login-box&quot;>
+        <h2>Login Gudang</h2>
+
+        <!-- Atribut standard form -->
+        <form action=&quot;&quot; method=&quot;POST&quot;>
+
+            <!-- Penggunaan label sangat penting untuk aksesibilitas dan UI -->
+            <div class=&quot;form-group&quot;>
+                <label for=&quot;username&quot;>Username</label>
+                <input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Masukkan username&quot; required>
+            </div>
+
+            <div class=&quot;form-group&quot;>
+                <label for=&quot;password&quot;>Password</label>
+                <input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Masukkan password&quot; required>
+            </div>
+
+            <button type=&quot;submit&quot;>Login</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="praktik-register" class="mb-5">
+                    <h2 class="fw-bold mb-3">5. Praktik: Register</h2>
+                    <p>Register hampir identik. Bedanya:</p>
+                    <ul>
+                        <li>Tambah field Nama Lengkap di atas username</li>
+                        <li>Ganti judul jadi "Daftar Akun"</li>
+                        <li>Ubah warna tombol menjadi hijau (#2ecc71) untuk membedakan aksi</li>
+                        <li>Hover hijau lebih gelap (#27ae60)</li>
+                    </ul>
+                    <p>Ini mengajarkan prinsip <strong>reuse</strong>. Kita pakai class .login-box yang sama, hanya ubah konten dan warna.</p>
+
+                    <div class="mt-4">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#reg-code">Kode Lengkap</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#reg-preview">Hasil</button></li>
+                        </ul>
+                        <div class="tab-content border border-top-0 p-3 rounded-bottom">
+                            <div class="tab-pane fade show active" id="reg-code">
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;REGISTER&lt;/title&gt;
+
+    &lt;style&gt;
+        /* 1. RESET DASAR */
+        * {
+            /* Layout */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. LAYOUT UTAMA */
+        body {
+            /* Layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+
+            /* Text */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 3. KOTAK FORM / KARTU (Menggunakan class yang sama dengan login) */
+        .login-box {
+            /* Layout */
+            width: 100%;
+            max-width: 320px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        h2 {
+            /* Layout */
+            margin-bottom: 20px;
+
+            /* Text */
+            text-align: center;
+            color: #333;
+        }
+
+        /* 4. STRUKTUR FORM */
+        .form-group {
+            /* Layout */
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            /* Layout */
+            display: block;
+            margin-bottom: 5px;
+
+            /* Text */
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Text */
+            font-size: 14px;
+        }
+
+        /* 5. TOMBOL &amp; INTERAKSI */
+        button {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #2ecc71; /* Warna hijau untuk daftar */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            /* Text */
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            /* Layout (Visual) */
+            background-color: #27ae60;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class=&quot;login-box&quot;&gt;
+        &lt;h2&gt;Daftar Akun&lt;/h2&gt;
+
+        &lt;form action=&quot;&quot; method=&quot;POST&quot;&gt;
+
+            &lt;!-- Menambah field Nama Lengkap --&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;nama&quot;&gt;Nama Lengkap&lt;/label&gt;
+                &lt;input type=&quot;text&quot; id=&quot;nama&quot; name=&quot;nama&quot; placeholder=&quot;Masukkan nama lengkap&quot; required&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+                &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Buat username&quot; required&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+                &lt;input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Buat password&quot; required&gt;
+            &lt;/div&gt;
+
+            &lt;button type=&quot;submit&quot;&gt;Daftar Sekarang&lt;/button&gt;
+
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+                            </div>
+                            <div class="tab-pane fade" id="reg-preview">
+                                <iframe class="preview-frame" srcdoc="<!DOCTYPE html>
+<html lang=&quot;id&quot;>
+
+<head>
+    <meta charset=&quot;UTF-8&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+    <title>REGISTER</title>
+
+    <style>
+        /* 1. RESET DASAR */
+        * {
+            /* Layout */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. LAYOUT UTAMA */
+        body {
+            /* Layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+
+            /* Text */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 3. KOTAK FORM / KARTU (Menggunakan class yang sama dengan login) */
+        .login-box {
+            /* Layout */
+            width: 100%;
+            max-width: 320px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        h2 {
+            /* Layout */
+            margin-bottom: 20px;
+
+            /* Text */
+            text-align: center;
+            color: #333;
+        }
+
+        /* 4. STRUKTUR FORM */
+        .form-group {
+            /* Layout */
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            /* Layout */
+            display: block;
+            margin-bottom: 5px;
+
+            /* Text */
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Text */
+            font-size: 14px;
+        }
+
+        /* 5. TOMBOL &amp; INTERAKSI */
+        button {
+            /* Layout */
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #2ecc71; /* Warna hijau untuk daftar */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            /* Text */
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            /* Layout (Visual) */
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=&quot;login-box&quot;>
+        <h2>Daftar Akun</h2>
+
+        <form action=&quot;&quot; method=&quot;POST&quot;>
+
+            <!-- Menambah field Nama Lengkap -->
+            <div class=&quot;form-group&quot;>
+                <label for=&quot;nama&quot;>Nama Lengkap</label>
+                <input type=&quot;text&quot; id=&quot;nama&quot; name=&quot;nama&quot; placeholder=&quot;Masukkan nama lengkap&quot; required>
+            </div>
+
+            <div class=&quot;form-group&quot;>
+                <label for=&quot;username&quot;>Username</label>
+                <input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Buat username&quot; required>
+            </div>
+
+            <div class=&quot;form-group&quot;>
+                <label for=&quot;password&quot;>Password</label>
+                <input type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Buat password&quot; required>
+            </div>
+
+            <button type=&quot;submit&quot;>Daftar Sekarang</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="best-practice" class="mb-5">
+                    <h2 class="fw-bold mb-3">6. Best Practice untuk Mahasiswa</h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">1. Konsistensi</h5>
+                                    <p>Gunakan pola komentar dan urutan properti yang sama di semua project. Ini mempercepat debugging.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">2. Mobile First</h5>
+                                    <p>max-width bukan width fixed. Form akan otomatis mengecil di HP.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">3. Aksesibilitas</h5>
+                                    <p>Selalu pasangkan label dan id. Jangan andalkan placeholder saja.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">4. Jangan Copy-Paste Buta</h5>
+                                    <p>Pahami kenapa pakai flex, kenapa box-sizing. Besok saat ujian praktik, kalian harus bisa tulis dari ingatan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="penutup" class="mb-5">
+                    <h2 class="fw-bold mb-3">7. Penutup dan Tugas</h2>
+                    <p>Besok di kelas:</p>
+                    <ol>
+                        <li>Ketik ulang login.html tanpa melihat, 15 menit</li>
+                        <li>Modifikasi menjadi register dengan tambahan field email</li>
+                        <li>Ubah skema warna menjadi tema kampus kalian</li>
+                    </ol>
+                    <div class="alert alert-primary mt-3">
+                        <strong>Ingat:</strong> HTML adalah struktur, CSS adalah presentasi. Pisahkan logikanya di kepala, maka kodenya akan bersih.
+                    </div>
+                </section>
+
+                <footer class="text-center text-muted py-4">
+                    Panduan Form Login & Register — Dibuat dengan Bootstrap CDN — 2026
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.innerText = 'Copy';
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.innerText = 'Copied!';
+                    btn.classList.add('btn-success');
+                    setTimeout(() => {
+                        btn.innerText = 'Copy';
+                        btn.classList.remove('btn-success');
+                    }, 2000);
+                });
+            });
+            pre.appendChild(btn);
+        });
+    </script>
+</body>
+</html>

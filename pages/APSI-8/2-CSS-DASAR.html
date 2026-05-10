@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Lengkap CSS Dasar - Untuk Mahasiswa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { position: relative; background-color: #f8fafc; }
+        .sidebar { position: sticky; top: 80px; height: calc(100vh - 100px); overflow-y: auto; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: .5rem; font-size: .85rem; overflow-x: auto; position: relative; }
+        .copy-btn { position: absolute; top: .5rem; right: .5rem; padding: .2rem .5rem; font-size: .75rem; color: #94a3b8; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: .25rem; cursor: pointer; transition: all 0.2s; }
+        .copy-btn:hover { color: white; background: rgba(255,255,255,0.2); }
+        code.inline { background: #e2e8f0; color: #dc2626; padding: .15rem .4rem; border-radius: .25rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .nav-pills .nav-link { color: #334155; text-align: left; }
+        .nav-pills .nav-link.active { background: #2563eb; color: white; }
+        h2, h3 { scroll-margin-top: 90px; }
+        .tag-card { border-left: 4px solid #2563eb; }
+        .demo-box { border: 2px dashed #2563eb; padding: 1rem; background: white; margin: .5rem 0; border-radius: .5rem; }
+        .box-model-demo { width: 200px; background: #dbeafe; border: 5px solid #2563eb; padding: 20px; margin: 30px; text-align: center; }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#nav-css" data-bs-offset="100" tabindex="0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <span class="navbar-brand fw-bold">CSS DASAR</span>
+            <span class="navbar-text text-white-50">Full Materi Wajib — Tanpa Playground</span>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row g-4">
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <div id="nav-css" class="nav flex-column nav-pills gap-1">
+                        <a class="nav-link" href="#apa">1. Apa itu CSS</a>
+                        <a class="nav-link" href="#cara">2. Cara Pakai CSS</a>
+                        <a class="nav-link" href="#selector">3. Selector</a>
+                        <a class="nav-link" href="#cascade">4. Cascade & Specificity</a>
+                        <a class="nav-link" href="#satuan">5. Warna & Satuan</a>
+                        <a class="nav-link" href="#box">6. Box Model</a>
+                        <a class="nav-link" href="#display">7. Display</a>
+                        <a class="nav-link" href="#position">8. Position</a>
+                        <a class="nav-link" href="#flexbox">9. Flexbox</a>
+                        <a class="nav-link" href="#grid">10. Grid</a>
+                        <a class="nav-link" href="#typo">11. Typography</a>
+                        <a class="nav-link" href="#dekor">12. Background & Border</a>
+                        <a class="nav-link" href="#pseudo">13. Pseudo</a>
+                        <a class="nav-link" href="#responsive">14. Responsive</a>
+                        <a class="nav-link" href="#wajib">15. Checklist</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="p-4 bg-white rounded-3 shadow-sm mb-4">
+                    <h1 class="h3 fw-bold">Belajar CSS dari Nol — Materi yang Wajib Dikuasai</h1>
+                    <p class="mb-0 text-secondary">Pahami konsep, bukan hafal properti. Setelah ini kalian bisa styling apapun tanpa Bootstrap.</p>
+                </div>
+
+                <section id="apa" class="mb-5">
+                    <h2 class="fw-bold">1. Apa itu CSS?</h2>
+                    <p>CSS (Cascading Style Sheets) mengatur <strong>tampilan</strong>. HTML = struktur, CSS = presentasi.</p>
+                    <div class="card tag-card">
+                        <div class="card-body">
+                            <strong>Prinsip inti:</strong> Selector menunjuk elemen, Declaration (properti: nilai) mengatur gayanya.
+                            <pre class="mt-2 mb-0"><code>p {
+  color: blue;
+  font-size: 16px;
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cara" class="mb-5">
+                    <h2 class="fw-bold">2. Tiga Cara Menyisipkan CSS</h2>
+                    <div class="row">
+                        <div class="col-md-4"><h6>Inline</h6><pre><code>&lt;p style="color:red"&gt;</code></pre></div>
+                        <div class="col-md-4"><h6>Internal</h6><pre><code>&lt;style&gt; p{...} &lt;/style&gt;</code></pre></div>
+                        <div class="col-md-4"><h6>External (Wajib)</h6><pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre></div>
+                    </div>
+                    <p class="alert alert-success">Untuk proyek nyata: selalu pakai external. Untuk belajar besok, internal cukup.</p>
+                </section>
+
+                <section id="selector" class="mb-5">
+                    <h2 class="fw-bold">3. Selector Dasar — Wajib Hafal</h2>
+                    <pre><code>/* elemen */
+p { margin: 0; }
+
+/* class - paling sering dipakai */
+.card { padding: 20px; }
+
+/* id - hanya 1x per halaman */
+#header { background: black; }
+
+/* universal */
+* { box-sizing: border-box; }
+
+/* grup */
+h1, h2, h3 { font-family: Arial; }
+
+/* descendant */
+nav a { text-decoration: none; }
+
+/* child langsung */
+ul > li { list-style: none; }</code></pre>
+                </section>
+
+                <section id="cascade" class="mb-5">
+                    <h2 class="fw-bold">4. Cascade, Specificity, Inheritance</h2>
+                    <p><strong>Cascade:</strong> yang ditulis terakhir menang jika specificity sama.</p>
+                    <p><strong>Specificity urutan:</strong> inline (1000) > id (100) > class (10) > elemen (1)</p>
+                    <pre><code>/* skor 1 */
+p { color: black; }
+
+/* skor 10 - menang */
+.text { color: blue; }
+
+/* skor 100 - menang */
+#judul { color: red; }</code></pre>
+                    <p><strong>Inheritance:</strong> properti seperti color dan font diturunkan ke anak. Margin tidak.</p>
+                </section>
+
+                <section id="satuan" class="mb-5">
+                    <h2 class="fw-bold">5. Warna dan Satuan</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Warna</h6>
+                            <pre><code>color: red;
+color: #ff0000;
+color: #f00;
+color: rgb(255,0,0);
+color: rgba(255,0,0,0.5);</code></pre>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Satuan</h6>
+                            <ul>
+                                <li><code class="inline">px</code> — absolut</li>
+                                <li><code class="inline">%</code> — relatif ke parent</li>
+                                <li><code class="inline">em</code> — relatif ke font parent</li>
+                                <li><code class="inline">rem</code> — relatif ke root (16px)</li>
+                                <li><code class="inline">vh/vw</code> — 1% tinggi/lebar layar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="box" class="mb-5">
+                    <h2 class="fw-bold">6. Box Model — Inti CSS</h2>
+                    <p>Setiap elemen = content + padding + border + margin.</p>
+                    <div class="box-model-demo">CONTENT</div>
+                    <pre><code>.box {
+  width: 200px;      /* content */
+  padding: 20px;     /* ruang dalam */
+  border: 5px solid blue;
+  margin: 30px;      /* ruang luar */
+}</code></pre>
+                    <p class="alert alert-warning">Wajib pakai di awal: <code class="inline">* { box-sizing: border-box; }</code> agar width termasuk padding dan border.</p>
+                </section>
+
+                <section id="display" class="mb-5">
+                    <h2 class="fw-bold">7. Display</h2>
+                    <pre><code>display: block;       /* p, div - ambil 1 baris penuh */
+display: inline;      /* span, a - selebar konten */
+display: inline-block; /* bisa atur width tapi tetap sebaris */
+display: none;        /* hilang total */
+display: flex;        /* aktifkan flexbox */</code></pre>
+                </section>
+
+                <section id="position" class="mb-5">
+                    <h2 class="fw-bold">8. Position</h2>
+                    <pre><code>position: static;   /* default */
+position: relative; /* geser dari posisi normal */
+  top: 10px; left: 20px;
+position: absolute; /* relatif ke parent yang relative */
+position: fixed;    /* nempel layar - untuk navbar */
+position: sticky;   /* nempel saat scroll */</code></pre>
+                </section>
+
+                <section id="flexbox" class="mb-5">
+                    <h2 class="fw-bold">9. Flexbox — Layout Modern</h2>
+                    <p>Untuk 1 dimensi (baris atau kolom). Wajib kuasai.</p>
+                    <pre><code>.container {
+  display: flex;
+  justify-content: center; /* horizontal: flex-start, center, space-between */
+  align-items: center;     /* vertikal: flex-start, center */
+  gap: 20px;               /* jarak antar item */
+  flex-wrap: wrap;         /* turun baris jika penuh */
+}
+
+.item {
+  flex: 1; /* bagi rata */
+}</code></pre>
+                    <div class="demo-box d-flex justify-content-center align-items-center gap-3" style="height:100px;">
+                        <div class="bg-primary text-white p-2">1</div>
+                        <div class="bg-primary text-white p-2">2</div>
+                        <div class="bg-primary text-white p-2">3</div>
+                    </div>
+                </section>
+
+                <section id="grid" class="mb-5">
+                    <h2 class="fw-bold">10. CSS Grid — Layout 2 Dimensi</h2>
+                    <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 kolom sama */
+  gap: 15px;
+}
+
+/* atau responsif otomatis */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}</code></pre>
+                </section>
+
+                <section id="typo" class="mb-5">
+                    <h2 class="fw-bold">11. Typography</h2>
+                    <pre><code>body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6; /* jarak baris */
+  font-weight: 400; /* 400 normal, 700 bold */
+  color: #333;
+}
+
+h1 {
+  font-size: 2rem; /* 32px */
+  letter-spacing: -0.5px;
+  text-align: center;
+}</code></pre>
+                </section>
+
+                <section id="dekor" class="mb-5">
+                    <h2 class="fw-bold">12. Background, Border, Shadow</h2>
+                    <pre><code>.card {
+  background-color: #fff;
+  background-image: url('bg.png');
+  background-size: cover;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* sudut tumpul */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}</code></pre>
+                </section>
+
+                <section id="pseudo" class="mb-5">
+                    <h2 class="fw-bold">13. Pseudo-class dan Pseudo-element</h2>
+                    <pre><code>/* saat interaksi */
+a:hover { color: red; }
+button:active { transform: scale(0.98); }
+input:focus { border-color: blue; outline: none; }
+
+/* struktur */
+li:first-child { font-weight: bold; }
+li:nth-child(odd) { background: #f5f5f5; }
+
+/* pseudo-element */
+p::before { content: "→ "; }
+p::after { content: " ✓"; }</code></pre>
+                </section>
+
+                <section id="responsive" class="mb-5">
+                    <h2 class="fw-bold">14. Responsive Dasar</h2>
+                    <pre><code>/* mobile first */
+.container { width: 100%; padding: 15px; }
+
+/* tablet ke atas */
+@media (min-width: 768px) {
+  .container { max-width: 720px; margin: auto; }
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .container { max-width: 960px; }
+}</code></pre>
+                    <p>Gunakan viewport meta di HTML: <code class="inline">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></p>
+                </section>
+
+                <section id="wajib" class="mb-5">
+                    <h2 class="fw-bold">15. Checklist Materi Wajib Dikuasai</h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5>Fundamental</h5>
+                                    <ul class="mb-0">
+                                        <li>Selector (Element, Class, ID)</li>
+                                        <li>Specificity & Cascade</li>
+                                        <li>Box Sizing & Box Model</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5>Layouting</h5>
+                                    <ul class="mb-0">
+                                        <li>Display (Block, Inline, Flex)</li>
+                                        <li>Positioning (Relative, Absolute, Fixed)</li>
+                                        <li>Flexbox (Justify, Align, Gap)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5>Visual & Typo</h5>
+                                    <ul class="mb-0">
+                                        <li>Color & RGBA</li>
+                                        <li>Units (px, rem, em, vh)</li>
+                                        <li>Font weight & Line height</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5>Decoration</h5>
+                                    <ul class="mb-0">
+                                        <li>Border Radius & Box Shadow</li>
+                                        <li>Pseudo-classes (:hover, :focus)</li>
+                                        <li>Media Queries Dasar</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-success mt-4">
+                        <strong>Tugas besok:</strong> Ambil HTML biodata kemarin, styling hanya dengan CSS external. Wajib pakai flexbox untuk centering, box model untuk kartu, dan media query untuk mobile.
+                    </div>
+                </section>
+
+                <footer class="text-center text-muted py-4">
+                    Panduan CSS Dasar — Dibuat dengan Bootstrap CDN — 2026
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.innerText = 'Copy';
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.innerText = 'Copied!';
+                    btn.classList.add('btn-success');
+                    setTimeout(() => {
+                        btn.innerText = 'Copy';
+                        btn.classList.remove('btn-success');
+                    }, 2000);
+                });
+            });
+            pre.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
