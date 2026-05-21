@@ -85,14 +85,14 @@
                                 <tr><th>Elemen</th><th>Fungsi Analitis</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td><code class="inline">&lt;form&gt;</code></td><td>Elemen penampung utama untuk mengumpulkan input data yang akan dikirim ke server.</td></tr>
-                                <tr><td><code class="inline">&lt;div class="login-box"&gt;</code></td><td>Kontainer entitas form agar terpisah dari elemen latar belakang atau konten lain.</td></tr>
-                                <tr><td><code class="inline">&lt;label for="..."&gt;</code></td><td>Menghubungkan teks deskriptif secara semantik dengan kolom input (Meningkatkan Aksesibilitas).</td></tr>
-                                <tr><td><code class="inline">&lt;input type="text"&gt;</code></td><td>Menyediakan kolom isian baris tunggal untuk teks standar (contoh: Username).</td></tr>
-                                <tr><td><code class="inline">&lt;input type="password"&gt;</code></td><td>Menjaga kerahasiaan dengan mengubah karakter ketikan menjadi titik/bintang (Security).</td></tr>
-                                <tr><td><code class="inline">&lt;input type="checkbox"&gt;</code></td><td>Menyediakan pilihan biner (ya/tidak) untuk menyimpan sesi login pengguna (Ingat Saya).</td></tr>
-                                <tr><td><code class="inline">&lt;button type="submit"&gt;</code></td><td>Tombol pemicu yang menjalankan aksi pengiriman data (submit) dari form ke server.</td></tr>
-                                <tr><td><code class="inline">required</code> (Atribut)</td><td>Atribut validasi sisi klien yang memastikan kolom input tidak boleh dibiarkan kosong.</td></tr>
+                                <tr><td><code class="inline">&lt;form&gt;</code></td><td>Wadah besar untuk membungkus semua inputan (seperti username dan password) agar bisa dikirim bersamaan.</td></tr>
+                                <tr><td><code class="inline">&lt;div class="login-box"&gt;</code></td><td>Kotak pembungkus agar tampilan form login mengumpul menjadi satu kartu yang rapi.</td></tr>
+                                <tr><td><code class="inline">&lt;label for="..."&gt;</code></td><td>Teks judul di atas kolom input. Jika judul ini diklik, kursor otomatis masuk ke kolom input pasangannya.</td></tr>
+                                <tr><td><code class="inline">&lt;input type="text"&gt;</code></td><td>Kotak kosong yang bisa diketik dengan tulisan biasa (untuk mengisi Username).</td></tr>
+                                <tr><td><code class="inline">&lt;input type="password"&gt;</code></td><td>Kolom input khusus yang otomatis menyembunyikan ketikan kita menjadi titik-titik bulat agar aman.</td></tr>
+                                <tr><td><code class="inline">&lt;input type="checkbox"&gt;</code></td><td>Kotak centang kecil untuk pilihan Ya/Tidak (misalnya untuk centang "Ingat Saya").</td></tr>
+                                <tr><td><code class="inline">&lt;button type="submit"&gt;</code></td><td>Tombol utama untuk mengirim data login atau masuk ke dalam aplikasi.</td></tr>
+                                <tr><td><code class="inline">required</code> (Atribut)</td><td>Tanda wajib isi. Kolom input tidak boleh dikosongkan saat tombol masuk diklik.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -120,17 +120,57 @@
                                         <tr><th style="width: 30%">Properti CSS</th><th>Deskripsi Fungsi</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td><code class="inline">box-sizing: border-box;</code></td><td>Memastikan penambahan padding dan border tidak mengubah total dimensi lebar/tinggi elemen.</td></tr>
-                                        <tr><td><code class="inline">display: flex;</code></td><td>Mengubah <code>&lt;body&gt;</code> menjadi flex container untuk mempermudah pengaturan tata letak di dalamnya.</td></tr>
-                                        <tr><td><code class="inline">justify-content</code> & <code class="inline">align-items</code></td><td>Secara bersamaan memposisikan konten agar berada tepat di tengah secara horizontal dan vertikal.</td></tr>
-                                        <tr><td><code class="inline">height: 100vh;</code></td><td>Mengatur tinggi elemen minimal sama dengan 100% tinggi layar perangkat (Viewport Height).</td></tr>
+                                        <tr>
+                                            <td><code class="inline">box-sizing: border-box;</code></td>
+                                            <td>Membuat ukuran elemen tetap sesuai ukuran yang ditentukan meskipun diberi padding atau border.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">margin: 0;</code></td>
+                                            <td>Menghapus jarak luar bawaan browser agar layout lebih rapi dan konsisten.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">padding: 0;</code></td>
+                                            <td>Menghapus jarak dalam bawaan browser pada semua elemen.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">display: flex;</code></td>
+                                            <td>Mengaktifkan sistem layout Flexbox agar posisi elemen lebih mudah diatur.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">justify-content: center;</code></td>
+                                            <td>Memposisikan isi tepat di tengah secara horizontal.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">align-items: center;</code></td>
+                                            <td>Memposisikan isi tepat di tengah secara vertikal.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">height: 100vh;</code></td>
+                                            <td>Membuat tinggi halaman memenuhi seluruh tinggi layar perangkat.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">background-color: #f2f2f2;</code></td>
+                                            <td>Memberikan warna latar abu-abu terang pada halaman.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">font-family: sans-serif;</code></td>
+                                            <td>Mengatur jenis huruf menjadi sederhana dan mudah dibaca.</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <pre><code>* { box-sizing: border-box; margin: 0; padding: 0; }
+                            <pre><code>* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
-    display: flex; justify-content: center; align-items: center;
-    height: 100vh; background-color: #f2f2f2; font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    font-family: sans-serif;
 }</code></pre>
                             <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div><label>Username</label><br><input type='text'></div><div><label>Password</label><br><input type='password'></div><div><input type='checkbox'> <label>Ingat Saya</label></div><br><button>Masuk</button></form></div></body></html>"></iframe>
                         </div>
@@ -139,26 +179,66 @@ body {
                     <div class="card step-card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="fw-bold"><span class="badge bg-primary me-2">Step 2</span> Membuat Kartu (The Container)</h5>
-                            <p>Memberikan batas visual, warna putih, dan bayangan lembut agar form terlihat menonjol dan terpisah dari latar belakang.</p>
+                            <p>Memberikan batas visual berupa garis tepi (border) tipis dan warna putih agar form terlihat terstruktur dan terpisah dari latar belakang.</p>
                             <div class="table-responsive my-3">
                                 <table class="table table-sm table-bordered mb-0 text-secondary" style="font-size: 0.9rem;">
                                     <thead class="table-light">
                                         <tr><th style="width: 30%">Properti CSS</th><th>Deskripsi Fungsi</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td><code class="inline">max-width: 320px;</code></td><td>Membatasi lebar maksimal form, mencegah form memanjang penuh (terlalu lebar) di layar desktop.</td></tr>
-                                        <tr><td><code class="inline">padding: 30px;</code></td><td>Memberikan ruang napas di dalam kotak agar elemen teks dan input tidak menempel ke tepi.</td></tr>
-                                        <tr><td><code class="inline">border-radius: 8px;</code></td><td>Menumpulkan keempat sudut tajam pada kotak menjadi melengkung agar UI terlihat lebih modern.</td></tr>
-                                        <tr><td><code class="inline">box-shadow</code></td><td>Menambahkan efek bayangan (X, Y, blur, warna) pada kotak untuk memberikan kesan kedalaman/mengambang.</td></tr>
+                                        <tr>
+                                            <td><code class="inline">width: 100%;</code></td>
+                                            <td>Membuat kotak login fleksibel mengikuti ukuran layar.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">max-width: 320px;</code></td>
+                                            <td>Membatasi lebar maksimum form agar tidak terlalu besar.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">padding: 30px;</code></td>
+                                            <td>Memberikan ruang di dalam kotak agar isi tidak menempel ke tepi.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">background: white;</code></td>
+                                            <td>Memberikan warna putih pada kartu login.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border-radius: 8px;</code></td>
+                                            <td>Membuat sudut kotak menjadi melengkung.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border: 1px solid #ccc;</code></td>
+                                            <td>Menambahkan garis tipis abu-abu di sekeliling form.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">text-align: center;</code></td>
+                                            <td>Membuat teks judul berada di tengah.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">margin-bottom: 20px;</code></td>
+                                            <td>Memberikan jarak bawah pada judul sebelum form dimulai.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">color: #333;</code></td>
+                                            <td>Mengubah warna teks menjadi abu gelap agar nyaman dibaca.</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <pre><code>.login-box {
-    width: 100%; max-width: 320px; padding: 30px;
-    background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 320px;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
-h2 { text-align: center; margin-bottom: 20px; color: #333; }</code></pre>
-                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); } h2 { text-align: center; margin-bottom: 20px; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div><label>Username</label><br><input type='text'></div><div><label>Password</label><br><input type='password'></div><div><input type='checkbox'> <label>Ingat Saya</label></div><br><button>Masuk</button></form></div></body></html>"></iframe>
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}</code></pre>
+                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; border: 1px solid #ccc; } h2 { text-align: center; margin-bottom: 20px; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div><label>Username</label><br><input type='text'></div><div><label>Password</label><br><input type='password'></div><div><input type='checkbox'> <label>Ingat Saya</label></div><br><button>Masuk</button></form></div></body></html>"></iframe>
                         </div>
                     </div>
 
@@ -172,22 +252,78 @@ h2 { text-align: center; margin-bottom: 20px; color: #333; }</code></pre>
                                         <tr><th style="width: 30%">Properti CSS</th><th>Deskripsi Fungsi</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td><code class="inline">display: block;</code> (pada label)</td><td>Membuat elemen mengambil satu baris penuh, secara otomatis mendorong elemen input ke baris bawah.</td></tr>
-                                        <tr><td><code class="inline">margin-bottom: 15px;</code></td><td>Memberikan jarak vertikal yang konsisten ke arah bawah antar setiap grup form input.</td></tr>
-                                        <tr><td><code class="inline">width: 100%;</code> (pada input)</td><td>Membuat kolom isian melebar maksimal hingga memenuhi ketersediaan ruang kontainer grup.</td></tr>
-                                        <tr><td><code class="inline">border: 1px solid #ddd;</code></td><td>Mendefinisikan gaya garis tepi input (ketebalan 1px, model solid, warna abu-abu terang).</td></tr>
-                                        <tr><td><code class="inline">display: flex; gap: 8px;</code></td><td>Menyelaraskan kotak centang (checkbox) dan teks label secara horizontal dengan jarak yang rapi.</td></tr>
+                                        <tr>
+                                            <td><code class="inline">margin-bottom: 15px;</code></td>
+                                            <td>Memberikan jarak antar grup input agar tidak terlalu rapat.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">display: block;</code></td>
+                                            <td>Membuat label berada di baris sendiri di atas input.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">margin-bottom: 5px;</code></td>
+                                            <td>Memberikan sedikit jarak antara label dan kolom input.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">font-size: 14px;</code></td>
+                                            <td>Mengatur ukuran teks label menjadi lebih kecil dan rapi.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">width: 100%;</code></td>
+                                            <td>Membuat input memenuhi lebar kotak login.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">padding: 10px;</code></td>
+                                            <td>Memberikan ruang di dalam input agar nyaman saat mengetik.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border: 1px solid #ddd;</code></td>
+                                            <td>Menambahkan garis tipis pada kolom input.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border-radius: 4px;</code></td>
+                                            <td>Membuat sudut input sedikit melengkung.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">display: flex;</code></td>
+                                            <td>Membuat checkbox dan label sejajar dalam satu baris.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">align-items: center;</code></td>
+                                            <td>Menyelaraskan posisi checkbox dan teks secara vertikal.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">gap: 8px;</code></td>
+                                            <td>Memberikan jarak antara checkbox dan teks label.</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <pre><code>.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-size: 14px; }
-.form-group input {
-    width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;
+                            <pre><code>.form-group {
+    margin-bottom: 15px;
 }
-.form-check { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
-.form-check label { font-size: 14px; margin-bottom: 0; }</code></pre>
-                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); } h2 { text-align: center; margin-bottom: 20px; color: #333; } .form-group { margin-bottom: 15px; } .form-group label { display: block; margin-bottom: 5px; font-size: 14px; } .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; } .form-check { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; } .form-check label { font-size: 14px; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div class='form-group'><label>Username</label><input type='text'></div><div class='form-group'><label>Password</label><input type='password'></div><div class='form-check'><input type='checkbox'><label>Ingat Saya</label></div><button>Masuk</button></form></div></body></html>"></iframe>
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+.form-check label {
+    font-size: 14px;
+    margin-bottom: 0;
+}</code></pre>
+                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; border: 1px solid #ccc; } h2 { text-align: center; margin-bottom: 20px; color: #333; } .form-group { margin-bottom: 15px; } .form-group label { display: block; margin-bottom: 5px; font-size: 14px; } .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; } .form-check { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; } .form-check label { font-size: 14px; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div class='form-group'><label>Username</label><input type='text'></div><div class='form-group'><label>Password</label><input type='password'></div><div class='form-check'><input type='checkbox'><label>Ingat Saya</label></div><button>Masuk</button></form></div></body></html>"></iframe>
                         </div>
                     </div>
 
@@ -201,18 +337,63 @@ h2 { text-align: center; margin-bottom: 20px; color: #333; }</code></pre>
                                         <tr><th style="width: 30%">Properti CSS</th><th>Deskripsi Fungsi</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td><code class="inline">cursor: pointer;</code></td><td>Mengubah kursor panah mouse menjadi indikator "tangan menunjuk" (pointer) saat <em>hover</em> di atas tombol.</td></tr>
-                                        <tr><td><code class="inline">border: none;</code></td><td>Menghapus seluruh garis tepi (border) standar yang biasanya diberikan secara otomatis oleh peramban.</td></tr>
-                                        <tr><td><code class="inline">:hover</code> (Pseudo-class)</td><td>Selektor keadaan khusus yang diaktifkan ketika user meletakkan kursor mouse tepat di atas elemen tersebut.</td></tr>
+                                        <tr>
+                                            <td><code class="inline">width: 100%;</code></td>
+                                            <td>Membuat tombol memenuhi lebar form login.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">padding: 10px;</code></td>
+                                            <td>Memberikan ruang di dalam tombol agar lebih nyaman diklik.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">background: #2563eb;</code></td>
+                                            <td>Memberikan warna biru pada tombol.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">color: white;</code></td>
+                                            <td>Mengubah warna tulisan tombol menjadi putih.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border: none;</code></td>
+                                            <td>Menghilangkan garis bawaan browser pada tombol.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">border-radius: 4px;</code></td>
+                                            <td>Membuat sudut tombol sedikit melengkung.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">cursor: pointer;</code></td>
+                                            <td>Mengubah kursor menjadi ikon tangan saat tombol disentuh.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">font-weight: bold;</code></td>
+                                            <td>Membuat tulisan tombol menjadi lebih tebal.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">button:hover</code></td>
+                                            <td>Memberikan efek perubahan warna saat mouse diarahkan ke tombol.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code class="inline">background: #1d4ed8;</code></td>
+                                            <td>Mengubah warna tombol menjadi lebih gelap saat hover.</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <pre><code>button {
-    width: 100%; padding: 10px; background: #2563eb; color: white;
-    border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
 }
-button:hover { background: #1d4ed8; }</code></pre>
-                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); } h2 { text-align: center; margin-bottom: 20px; color: #333; } .form-group { margin-bottom: 15px; } .form-group label { display: block; margin-bottom: 5px; font-size: 14px; } .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; } .form-check { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; } .form-check label { font-size: 14px; margin-bottom: 0; } button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; } button:hover { background: #1d4ed8; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div class='form-group'><label>Username</label><input type='text'></div><div class='form-group'><label>Password</label><input type='password'></div><div class='form-check'><input type='checkbox'><label>Ingat Saya</label></div><button>Masuk</button></form></div></body></html>"></iframe>
+button:hover {
+    background: #1d4ed8;
+}</code></pre>
+                            <iframe class="preview-frame w-100 mt-2" srcdoc="<html><style>* { box-sizing: border-box; margin: 0; padding: 0; } body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; font-family: sans-serif; } .login-box { width: 100%; max-width: 320px; padding: 30px; background: white; border-radius: 8px; border: 1px solid #ccc; } h2 { text-align: center; margin-bottom: 20px; color: #333; } .form-group { margin-bottom: 15px; } .form-group label { display: block; margin-bottom: 5px; font-size: 14px; } .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; } .form-check { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; } .form-check label { font-size: 14px; margin-bottom: 0; } button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; } button:hover { background: #1d4ed8; }</style><body><div class='login-box'><h2>Login Sistem</h2><form><div class='form-group'><label>Username</label><input type='text'></div><div class='form-group'><label>Password</label><input type='password'></div><div class='form-check'><input type='checkbox'><label>Ingat Saya</label></div><button>Masuk</button></form></div></body></html>"></iframe>
                         </div>
                     </div>
                 </section>
